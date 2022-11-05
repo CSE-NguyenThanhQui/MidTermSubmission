@@ -1,0 +1,42 @@
+/*
+ * fsm_simplebutton.c
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: NGUYEN THANH QUI
+ */
+
+
+#include "main.h"
+#include "button.h"
+#include "displayLED7.h"
+enum ButtonState{BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND} ;
+enum ButtonState buttonState = BUTTON_RELEASED;
+void fsm_simple_button_run(void){
+	switch(buttonState){
+	case BUTTON_RELEASED:
+		display7SEG(0);
+		if(is_button_pressed(0)){
+			buttonState = BUTTON_PRESSED;
+			//INCREASE VALUE OF PORT A BY ONE UNIT
+		}
+		break;
+	case BUTTON_PRESSED:
+		display7SEG(1);
+		HAL_GPIO_TogglePin(GPIOA, LED_RED_Pin);
+		if(!is_button_pressed(0)){
+			buttonState = BUTTON_RELEASED;
+		} else {
+			if(is_button_pressed_1s(0)){
+				buttonState = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+			}
+		}
+		break;
+	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+		if(!is_button_pressed(0)){
+			buttonState = BUTTON_RELEASED;
+		}
+		//todo
+		display7SEG(9);
+		break;
+	}
+}

@@ -1,0 +1,23 @@
+/*
+ * fsm_simplebutton.c
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: NGUYEN THANH QUI
+ */
+
+
+#include "fsm_simplebutton.h"
+
+void fsm_simple_button_run(){
+	switch(status){
+	case STATE1:
+		if ()
+		break;
+	case STATE2:
+
+		break;
+	case STATE3:
+
+		break;
+	}
+}

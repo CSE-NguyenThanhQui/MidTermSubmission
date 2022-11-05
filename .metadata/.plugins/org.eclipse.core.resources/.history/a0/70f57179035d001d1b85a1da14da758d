@@ -1,0 +1,15 @@
+/*
+ * button.h
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: NGUYEN THANH QUI
+ */
+
+#ifndef INC_BUTTON_H_
+#define INC_BUTTON_H_
+#include "button.h"
+void button_reading(void);
+int is_button_pressed(int index);
+intr is_button_pressed_1s(int index);
+
+#endif /* INC_BUTTON_H_ */

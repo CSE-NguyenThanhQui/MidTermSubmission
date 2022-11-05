@@ -1,0 +1,2 @@
+displayLED7.c:9:6:display7SEG	16	static
+displayLED7.c:106:6:clearScreen	8	static

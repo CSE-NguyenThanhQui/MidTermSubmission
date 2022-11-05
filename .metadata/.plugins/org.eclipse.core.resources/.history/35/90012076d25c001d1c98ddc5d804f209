@@ -1,0 +1,68 @@
+/*
+ * fsm_simplebutton.c
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: NGUYEN THANH QUI
+ */
+
+
+#include "fsm_simplebutton.h"
+
+void fsm_simple_button_run(){
+	switch(status){
+	case INIT:
+		clearScreen();
+		status = STATE_1;
+		setTimer(10000);
+		break;
+	case STATE_1:
+		//clearScreen();
+
+		display7SEG(value);
+		if (timer_flag == 1){
+			status = STATE_2;
+			value--;
+			setTimer(1000);
+		}
+		if (isButtonPressed(1)){
+			status = STATE_1;
+			value++;
+			if (value > 9) value = 0;
+			setTimer(5000);
+		}
+		if (isButtonPressed(2)){
+			status = STATE_1;
+			value--;
+			if (value < 0) value = 9;
+			setTimer(5000);
+		}
+		if (isButtonPressed(0)){
+			status = STATE_1;
+			value = 0;
+			setTimer(5000);
+		}
+		break;
+	case STATE_2:
+		display7SEG(value);
+		if (value == 0){
+			status = STATE_3;
+			value = 0;
+			//setTimer(10000);
+		}
+		if (value != 0 && timer_flag == 1){
+			value--;
+			status = STATE_2;
+			setTimer(1000);
+		}
+		break;
+	case STATE_3:
+		display7SEG(value);
+		if (isButtonPressed(1) || (isButtonPressed(2)){
+			status = INIT;
+		}
+
+		break;
+	default: break;
+	}
+
+}

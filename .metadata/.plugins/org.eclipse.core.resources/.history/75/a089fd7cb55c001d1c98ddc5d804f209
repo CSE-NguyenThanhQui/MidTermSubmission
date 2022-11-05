@@ -1,0 +1,21 @@
+/*
+ * global.h
+ *
+ *  Created on: Nov 5, 2022
+ *      Author: NGUYEN THANH QUI
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#include "button.h"
+#include "software_timer.h"
+
+#define INIT   0
+#define STATE1 1
+#define STATE2 2
+#define STATE3 3
+
+extern int status;
+
+#endif /* INC_GLOBAL_H_ */
